@@ -41,11 +41,11 @@ You can configure your Mercure service in the [services configuration](#1-config
 |----------------|-------------------|----------|---------------------------------------------------------------------------------------------------|
 | `cors_origins` | List of `string`s | No       | Origins allowed to subscribe from a browser, such as `https://example.com`. `*` allows all origins. |
 | `anonymous`    | `boolean`         | No       | Allows subscribers without a JWT. Defaults to `false`.                                            |
-| `history_size` | `integer`         | No       | Number of updates kept in the history. Defaults to `1000000`. `0` keeps every update.              |
+| `history_size` | `integer`         | No       | Number of updates kept in the history. Defaults to `0`, which keeps every update.                 |
 
 Mercure stores published updates on the service disk so that subscribers can catch up on missed updates with `Last-Event-ID`.
-`history_size` limits how many updates are kept: older ones are removed as new updates are published.
-With `history_size: 0`, the history is never cleaned up and grows until the disk is full.
+By default, the history is never cleaned up and grows until the disk is full.
+Set `history_size` to limit how many updates are kept: older ones are removed as new updates are published.
 
 The history database file doesn't shrink when old updates are removed.
 Its space is reused for new updates.
